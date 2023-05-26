@@ -1,5 +1,7 @@
 #https://github.com/netology-code/py-homeworks-basic/blob/new_oop/6.classes/README.md
 
+from statistics import mean
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -8,7 +10,10 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
- 
+
+    def __str__(self) -> str:
+        pass
+
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)  
         
@@ -27,14 +32,22 @@ class Mentor:
         self.name = name
         self.surname = surname
         self.courses_attached = []
-        
-        
+            
+
 class Lecturer (Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
+    
+    def __mean_grade(self):
+        for grade in self.grades.values():
+            s += mean(grade)
+            return round((s / len(self.grades)), 1)
+            
         
-
+    def __str__(self):
+        res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка {}'
+        
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -45,6 +58,10 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+        
+    def __str__(self):
+        res = f'Имя: {self.name} \nФамилия: {self.surname}'
+        return res
 
 
 # best_student = Student('Ruoy', 'Eman', 'your_gender')
