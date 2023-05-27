@@ -1,6 +1,7 @@
 #https://github.com/netology-code/py-homeworks-basic/blob/new_oop/6.classes/README.md
 
 from statistics import mean
+from functools import reduce
 
 class Student:
     def __init__(self, name, surname, gender):
@@ -40,13 +41,11 @@ class Lecturer (Mentor):
         self.grades = {}
     
     def __mean_grade(self):
-        for grade in self.grades.values():
-            s += mean(grade)
-            return round((s / len(self.grades)), 1)
+        return mean(reduce(lambda x, y: x+y, self.grades.values()))
             
         
     def __str__(self):
-        res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка {}'
+        res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка {self.__mean_grade()}'
         
 
 class Reviewer(Mentor):
@@ -75,3 +74,7 @@ class Reviewer(Mentor):
 # cool_mentor.rate_hw(best_student, 'Python', 10)
  
 # print(best_student.grades)
+
+temp = {'jry':[10, 9, 6, 5], 'dre': [10, 3, 5, 8], 'asr': [1, 5, 6, 7]}
+temp2 = reduce(lambda x, y: x+y, temp.values())
+print(temp2)
