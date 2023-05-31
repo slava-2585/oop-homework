@@ -84,14 +84,14 @@ class Reviewer(Mentor):
 def mean_stud(studs, courses):
     total = []
     for s in studs:
-        print (s.grades[courses])
+        #print (s.grades[courses])
         total += s.grades[courses]
     return round(mean(total), 1)
 
 def mean_lect(lects, courses):
     total = []
     for l in lects:
-        print(l.grades[courses])
+        #print(l.grades[courses])
         total += l.grades[courses]
     return round(mean(total), 1)
 
@@ -147,5 +147,5 @@ print()
 print(lect1)
 print(lect2)
 print(lect1 > lect2)
-print(mean_stud([stud1, stud2], 'Web'))
-print(mean_lect([lect1, lect2], 'Web'))
+print('Средняя оценка студента за курс', mean_stud([stud1, stud2], 'Web'))
+print('Средняя оценка лектора за курс',mean_lect([lect1, lect2], 'Web'))
