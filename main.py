@@ -31,7 +31,13 @@ class Student:
             else:
                 lecturer.grades[course] = [grade]
         else:
-            return 'Ошибка' 
+            return 'Ошибка'
+    
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Not a Student')
+            return
+        return self.__mean_grade() < other.__mean_grade()
  
      
 class Mentor:
@@ -52,7 +58,13 @@ class Lecturer (Mentor):
         
     def __str__(self):
         res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {self.__mean_grade()}'
+        return res
         
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Not a Lecturer')
+            return
+        return self.__mean_grade() < other.__mean_grade()
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -80,7 +92,3 @@ class Reviewer(Mentor):
 # cool_mentor.rate_hw(best_student, 'Python', 10)
  
 # print(best_student.grades)
-
-temp = {'jry':[10, 9, 6, 5], 'dre': [10, 3, 5, 8], 'asr': [1, 5, 6, 7]}
-temp2 = reduce(lambda x, y: x+y, temp.values())
-print(temp2)
