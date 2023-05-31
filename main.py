@@ -12,8 +12,14 @@ class Student:
         self.courses_in_progress = []
         self.grades = {}
 
-    def __str__(self) -> str:
-        pass
+    def __str__(self):
+        res = f'Имя: {self.name} \nФамилия: {self.surname}\n \
+            Средняя оценка за домашние задания: {self.__mean_grade()}\nКурсы в процессе изучения:{self.courses_in_progress} \
+                Завершенные курсы: {self.finished_courses}'
+        return res
+    
+    def __mean_grade(self):
+        return mean(reduce(lambda x, y: x+y, self.grades.values()))
 
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)  
@@ -45,7 +51,7 @@ class Lecturer (Mentor):
             
         
     def __str__(self):
-        res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка {self.__mean_grade()}'
+        res = f'Имя: {self.name} \nФамилия: {self.surname} \nСредняя оценка за лекции: {self.__mean_grade()}'
         
 
 class Reviewer(Mentor):
